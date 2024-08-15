@@ -5,6 +5,7 @@ interface EnvVars {
   PORT: number;
   STRIPE_PUBLISHABLE_KEY: string;
   STRIPE_SECRET_KEY: string;
+  BASE_URL: string;
 }
 
 const envSchema = joi
@@ -12,6 +13,7 @@ const envSchema = joi
     PORT: joi.number().required().default(3003),
     STRIPE_PUBLISHABLE_KEY: joi.string().required(),
     STRIPE_SECRET_KEY: joi.string().required(),
+    BASE_URL: joi.string().required().default('http://localhost:3000'),
   })
   .unknown(true);
 
@@ -30,4 +32,5 @@ export const envs = {
   port: envVars.PORT,
   stripePublishableKey: envVars.STRIPE_PUBLISHABLE_KEY,
   stripeSecretKey: envVars.STRIPE_SECRET_KEY,
+  baseUrl: envVars.BASE_URL,
 };
