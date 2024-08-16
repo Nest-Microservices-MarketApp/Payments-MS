@@ -65,16 +65,30 @@ export class PaymentsService {
     }
 
     switch (event.type) {
-      case 'payment_intent.succeeded':
-        const paymentIntent = event.data.object;
-        this.logger.log(`PaymentIntent was successful: ${paymentIntent.id}`);
-        // TODO:Handle the successful payment intent here
+      case 'charge.succeeded':
+        const chargeSucceeded = event.data.object;
+        this.logger.log(`Charge was successful: ${chargeSucceeded.id}`);
+        //TODO: Handle the successful charge here
         break;
-      case 'payment_method.attached':
-        const paymentMethod = event.data.object;
-        this.logger.log(`PaymentMethod was attached: ${paymentMethod.id}`);
-        // TODO:Handle the attached payment method here
-        break;
+      // case 'payment_intent.succeeded':
+      //   const paymentIntentSucceeded = event.data.object;
+      //   this.logger.log(
+      //     `PaymentIntent was successful: ${paymentIntentSucceeded.id}`,
+      //   );
+      //   // TODO:Handle the successful payment intent here
+      //   break;
+      // case 'payment_intent.created':
+      //   const paymentIntentCreated = event.data.object;
+      //   this.logger.log(
+      //     `PaymentIntent was created: ${paymentIntentCreated.id}`,
+      //   );
+      //   // TODO:Handle the created payment intent here
+      //   break;
+      // case 'payment_method.attached':
+      //   const paymentMethod = event.data.object;
+      //   this.logger.log(`PaymentMethod was attached: ${paymentMethod.id}`);
+      //   // TODO:Handle the attached payment method here
+      //   break;
       default:
         this.logger.warn(`Unhandled event type: ${event.type}`);
     }
