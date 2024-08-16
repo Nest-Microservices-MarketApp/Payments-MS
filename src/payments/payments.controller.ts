@@ -1,4 +1,13 @@
-import { Body, Controller, Get, HttpStatus, Post } from '@nestjs/common';
+import { Request, Response } from 'express';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpStatus,
+  Post,
+  Req,
+  Res,
+} from '@nestjs/common';
 import { PaymentsService } from './payments.service';
 import { ResponseDto } from 'src/common';
 import { CreatePaymentSessionDto } from './dto';
@@ -37,8 +46,8 @@ export class PaymentsController {
   }
 
   @Post('webhook')
-  async stripWebhook() {
-    const payload = await this.paymentsService.stripWebhook();
+  async stripWebhook(@Req() req: Request, @Res() res: Response) {
+    const payload = await this.paymentsService.stripWebhook(req, res);
 
     return new ResponseDto(HttpStatus.OK, 'Webhook received', payload);
   }

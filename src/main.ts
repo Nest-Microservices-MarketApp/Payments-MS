@@ -16,6 +16,7 @@ async function configureMiddleware(app: INestMicroservice) {
 async function bootstrap() {
   const logger = new Logger('MS Payments - Bootstrap');
 
+  //TODO: maybe you have to set rawBody to true for the webhook to work
   // const app = await NestFactory.createMicroservice<MicroserviceOptions>(
   //   AppModule,
   //   {
